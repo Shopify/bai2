@@ -32,7 +32,7 @@ module Bai2
         records = data.split("\n").map(&:strip).map {|l| Record.new(l, options: options) }
 
         # merge continuations
-        records = merge_continuations(records)
+        records = merge_continuations(records, options)
 
         # build the tree
         root = parse_tree(records)
@@ -49,13 +49,13 @@ module Bai2
 
       # Merges continuations
       #
-      def merge_continuations(records)
+      def merge_continuations(records, options)
         merged = []
         records.each do |record|
           if record.code == :continuation
             last       = merged.pop
             new_record = Record.new(last.raw + ",\n" + record.fields[:continuation],
-                                    last.physical_record_count + 1)
+                                    last.physical_record_count + 1, options: options)
             merged << new_record
           else
             merged << record
