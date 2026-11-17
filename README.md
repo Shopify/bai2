@@ -1,3 +1,5 @@
+> **This repository is no longer maintained.** It has been archived by Shopify and receives no updates or security fixes.
+
 # Bai2
 
 This library implements the [Bai2 standard][bai2], as per its official
